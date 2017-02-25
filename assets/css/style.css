@@ -1,0 +1,58 @@
+body {
+	color: white;
+}
+h1 {color: pink;
+text-align: center;}
+
+p {font-size: 24px;
+	text-align: left;
+}
+
+.green {
+	background-color: green;
+}
+
+.score, .scoreboard {
+	height: 40px;
+}
+
+.teal {
+	background-color: #008080;
+}
+
+.instructions {
+	background-color: yellow;
+	color: black;
+	text-align: left;
+}
+.jewelOne, .jewelTwo, .jewelThree, .jewelFour {
+	height: 60px;
+	width: 60px;
+	display: inline;
+	padding: 10px;
+	margin:10px;
+}
+
+.jewelOne {
+	background-color: red;
+}
+
+.jewelTwo {
+	background-color: green;
+}
+
+.jewelThree {
+	background-color: pink;
+}
+
+.jewelFour {
+	background-color: aqua;
+}
+
+.row {border: 2px dashed pink;}
+
+.totalScoreHeader, .totalScoreNumber {color: white;}
+
+.totalScoreNumber {
+	height: 80px;
+}
