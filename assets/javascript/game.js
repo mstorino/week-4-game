@@ -1,37 +1,99 @@
-// 1. put value in .score
-// 2. give value to each jewel
-// 3. click jewel
-// 4. add value of jewel to the .totalScoreNumber
-// 5. continue to add value of jewel to .totalScoreNumber everytime it's clicked
-// 6. end game when the value of .totalScoreNumber equals the value of .score or value of .totalScoreNumber is greater than the value of .score
-// 7. if .totalScoreNumber equals value of .score say "You Win" in .scoreboard
-// 8. if .totalScoreNumber is greater than value of .score say "You lose" in .scoreboard
-// 9. if .totalScoreNumber equals value of .score add 1 to wins in .scoreboard
-// 10. if .totalScoreNumber equals value of .score add 1 to losses .scoreboard
-// 11. empty .totalScoreNumber
 
+// Global Variables
+var lossCount = 0;
+var winCount = 0;
+var score = 0;
+var targetScore = 20;
 
+// Crystal Variables
+var crystal = {
+  blue:
+  {
+    name: "Blue",
+    value: 0
+  },
+  green:
+  {
+    name: "Green",
+    value: 0
+  },
+  red:
+  {
+    name: "Red",
+    value: 0
+  },
+  pink:
+  {
+    name: "Pink",
+    value: 0
+  }
+};
 
+start();
 
+//set game state
+function start() {
+	score = 0;
+	$("#score").html("<h2> Your Score: " + score);
+	crystalVal();
+	targetScoreVal();
+}
+//random math function to generate crystal values and targetscore
 
-// // variable list 
-// var objectHere = [
-//     "for",
-//     "the",
-//     "it",
-//     "up",
-//     "in",
-//     "she"
-// ]
+function randomNum (min, max){
+	return Math.floor(Math.random() * (max-min + 1)) + min;
+};
 
-// var hangmanWord = "";
+//set random targetScore Value and render in html
+function targetScoreVal () {
+	targetScore = randomNum(20, 50);
+	$("#targetScore").html("<h2> Target Score: " + targetScore);
+}
 
+// assign random values to each jewel
+function crystalVal(){
+	crystal.blue.value = randomNum(1, 10);
+	crystal.green.value = randomNum(1, 10);
+	crystal.red.value = randomNum(1, 10);
+	crystal.pink.value = randomNum(1, 10);
+}
 
+// add value of jewel to #score everytime a jewel is clicked
 
-// function startGame(){
-    
-// }
+function addValue (crystal) {
+	score += crystal.value;
+	checkWin();
+	$("#score").html("<h2> Your Score: " + score);
+}
 
+// end game when the score equals or exceeds totalscore
+function checkWin() {
+	if (score === targetScore) {
+		$("#scoreboard").html("<h2>Game Over. You won</h2>");
+		winCount++
+		$("#winCount").html("<h3>Wins: " + winCount + "</h3>");
+		start();
+	} else if (score > targetScore) {
+		$("#scoreboard").html("<h2>Game Over. You Lost</h2>");
+		lossCount++
+		$("#lossCount").html("<h3>Losses: " + lossCount + "</h3>");
+		start();
+	}
+}
 
+// Click Events: collect value of jewel onclick
+$("#red").click(function(){
+	addValue(crystal.red);
+});
 
-// startGame();
+$("#pink").click(function(){
+	addValue(crystal.pink);
+});
+
+$("#green").click(function(){
+	addValue(crystal.green);
+});
+
+$("#blue").click(function(){
+	addValue(crystal.blue);
+});
